@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.12.21",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.0"
+  },
+  "name": "",
+  "version": "1.0.0",
+  "description": "Student data management with user-friendly CRUD operations. Built on Express, EJS, Sequelize, and PostgreSQL, it ensures efficient data handling and server-side rendering.",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vixhnuchandran",
+  "license": "ISC"
+}

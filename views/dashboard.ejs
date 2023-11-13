@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SB-SMS</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <script src="/js/index.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <script>
+      async function deleteUser(userId) {
+        const confirmed = confirm(
+          "Are you sure you want to delete this Student?"
+        )
+        if (confirmed) {
+          fetch(`/workspace/delete/${userId}`, {
+            method: "PATCH",
+          }).then(response => {
+            location.reload()
+          })
+        }
+      }
+
+      function resetTable() {
+        let input = document.getElementById("searchInput")
+        input.value = ""
+
+        let tableElement = document.querySelector("table")
+        let trElements = tableElement.getElementsByTagName("tr")
+
+        for (let i = 1; i < trElements.length; i++) {
+          trElements[i].style.display = ""
+        }
+      }
+
+      function searchTable() {
+        let input = document.getElementById("searchInput")
+        let toSearch = input.value.toLowerCase()
+        let tableElement = document.querySelector("table")
+        let trElement = tableElement.getElementsByTagName("tr")
+
+        for (let i = 1; i < trElement.length; i++) {
+          let toHide = false
+          let tdElement = trElement[i].getElementsByTagName("td")
+
+          for (let j = 1; j < tdElement.length; j++) {
+            if (tdElement[j]) {
+              txtValue = tdElement[j].textContent || tdElement[j].innerText
+
+              if (txtValue.toLowerCase().includes(toSearch)) {
+                toHide = true
+                break
+              }
+            }
+          }
+
+          if (toHide) {
+            trElement[i].style.display = ""
+          } else {
+            trElement[i].style.display = "none"
+          }
+        }
+      }
+      function deleteUser(userId) {
+        const confirmed = confirm(
+          "Are you sure you want to delete this Student?"
+        )
+        if (confirmed) {
+          fetch(`/dashboard/delete/${userId}`, {
+            method: "PATCH",
+          }).then(response => {
+            location.reload()
+          })
+        }
+      }
+
+      function resetTable() {
+        let input = document.getElementById("searchInput")
+        input.value = ""
+
+        let tableElement = document.querySelector("table")
+        let trElements = tableElement.getElementsByTagName("tr")
+
+        for (let i = 1; i < trElements.length; i++) {
+          trElements[i].style.display = ""
+        }
+      }
+
+      function searchTable() {
+        let input = document.getElementById("searchInput")
+        let toSearch = input.value.toLowerCase()
+        let tableElement = document.querySelector("table")
+        let trElement = tableElement.getElementsByTagName("tr")
+
+        for (let i = 1; i < trElement.length; i++) {
+          let toHide = false
+          let tdElement = trElement[i].getElementsByTagName("td")
+
+          for (let j = 1; j < tdElement.length; j++) {
+            if (tdElement[j]) {
+              txtValue = tdElement[j].textContent || tdElement[j].innerText
+
+              if (txtValue.toLowerCase().includes(toSearch)) {
+                toHide = true
+                break
+              }
+            }
+          }
+
+          if (toHide) {
+            trElement[i].style.display = ""
+          } else {
+            trElement[i].style.display = "none"
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-blue-100">
+    <%- include('include/_navbar.ejs') %>
+    <main class="border-2 pt-7 pb-10">
+      <h2 class="text-5xl font-bold text-center">BATCH 2023-24</h2>
+      <div class="flex justify-between items-start mx-9">
+        <div class="item1">
+          <div class="ml-6 flex justify-start p-4">
+            <label for="table-search" class="sr-only"></label>
+            <div class="relative mt-1">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="searchInput"
+                onkeyup="searchTable()"
+                class="bg-gray-50 border rounded-3xl border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search..."
+              />
+            </div>
+            <button
+              onclick="resetTable()"
+              class="mt-1 h-10 w-20 rounded-3xl text-gray-200 bg-blue-600 ml-3"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+        <div class="item2">
+          <button
+            onclick="window.location.href='/dashboard/create'"
+            class="btn-add mt-5 mr-10 p-3 rounded-3xl bg-blue-600 text-gray-200 p-2 rounde"
+          >
+            &nbsp ADD <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col ml-10 mr-10 bg-blue-100 rounded-xl">
+        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="border-2 border-gray-200 min-w-full">
+                <thead class="bg-teal-300">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      ID
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      FIRSTNAME
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      LASTNAME
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      BIRTH YEAR
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      CONTACT NUMBER
+                    </th>
+                    <th
+                      scope="col"
+                      class="long-text text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      ADDRESS
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-xl font-medium text-gray-900 px-6 py-4 text-center"
+                    >
+                      ACTION
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let i=0; i < students.length; i++){ %>
+
+                  <tr class="<%= i % 2 === 0 ? 'bg-gray-200' : 'bg-red-200' %>">
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].studentId %>
+                    </td>
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].firstname %>
+                    </td>
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].lastname %>
+                    </td>
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].birthdate.split('-').reverse().join('-')
+                      %>
+                    </td>
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].contact %>
+                    </td>
+                    <td class="text-center px-6 py-4">
+                      <%= students[i].address %>
+                    </td>
+                    <td class="text-center px-6 py-4 sapce-x-2">
+                      <button
+                        onclick="window.location.href='/dashboard/update/<%= students[i].studentId %>'"
+                        class="bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 border border-solid border-gray-300 rounded-md shadow-inner text-gray-800 cursor-pointer inline-block font-sans text-base h-7 overflow-hidden px-2 text-center text-no-underline whitespace-nowrap select-none focus:shadow-outline-orange hover:border-gray-400 active:border-gray-400 active:hover:border-gray-400"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onclick="deleteUser('<%= students[i].studentId %>')"
+                        class="bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 border border-solid border-gray-300 rounded-md shadow-inner text-gray-800 cursor-pointer inline-block font-sans text-base h-7 overflow-hidden px-2 text-center text-no-underline whitespace-nowrap select-none focus:border-orange-500 focus:shadow-outline-orange hover:border-gray-400 active:border-gray-400 active:hover:border-gray-400"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

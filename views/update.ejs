@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <script src="/js/index.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-blue-100">
+    <%- include('include/_navbar.ejs') %>
+
+    <main class="border-2 pt-9 pb-10">
+      <!-- <div >
+    <button onclick="window.location.href='/workspace'" class="btn-add"> Go back</button>
+  </div> -->
+
+      <div class="w-full bg-grey-500">
+        <div class="container mx-auto">
+          <div class="border-2 w-96 mx-auto bg-white rounded shadow">
+            <div
+              class="mx-16 py-4 px-8 text-black text-center text-xl font-bold border-b border-grey-500"
+            >
+              <span class="text-2xl font-bold text-center">
+                <%= heading %>
+              </span>
+            </div>
+
+            <form
+              class="check-form"
+              name="student_application"
+              id="updateForm"
+              action="/dashboard/update/<%= student.studentId %>"
+              method="POST"
+            >
+              <div class="py-4 px-8">
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2"
+                    >Firstname:</label
+                  >
+                  <input
+                    class="border rounded w-full py-2 px-3 text-grey-darker"
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    minlength="3"
+                    value="<%= student.firstname %>"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2"
+                    >Lastname:</label
+                  >
+                  <input
+                    class="border rounded w-full py-2 px-3 text-grey-darker"
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    value="<%= student.lastname %>"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2"
+                    >Year of birth:</label
+                  >
+                  <input
+                    class="border rounded w-full py-2 px-3 text-grey-darker"
+                    type="date"
+                    name="birthdate"
+                    id="dateofbirth"
+                    value="<%= student.birthdate %>"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2">
+                    Contact Number:
+                  </label>
+                  <input
+                    class="border rounded w-full py-2 px-3 text-grey-darker"
+                    type="tel"
+                    name="contact"
+                    maxlength="10"
+                    minlength="10"
+                    id="contact"
+                    value="<%= student.contact %>"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2"
+                    >Address:</label
+                  >
+                  <textarea
+                    class="h-48 resize-none border rounded w-full py-2 px-3 text-grey-darker"
+                    type="text"
+                    name="address"
+                    id="address"
+                    placeholder=""
+                    title="Address"
+                  >
+<%= student.address %></textarea
+                  >
+                </div>
+
+                <div class="mb-4 text-center">
+                  <button type="submit" class="btn-save mx-auto">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script></script>
+  </body>
+</html>
